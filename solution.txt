@@ -1,0 +1,58 @@
+function apartmentHunting(blocks, reqs) {
+  // Write your code here.
+
+  let bestIndex = 0;
+  let bestDistance = blocks.length;
+  for (let i = 0; i < blocks.length; i++) {
+    const block = blocks[i];
+    let distance = 0;
+    for (let j = 0; j < blocks.length; j++) {
+      const otherBlock = blocks[j];
+      if (reqs.some(req => otherBlock[req])) {
+        distance = Math.max(distance, Math.abs(i - j));
+      }
+    }
+    if (distance < bestDistance) {
+      bestIndex = i;
+      bestDistance = distance;
+    }
+  }
+  return bestIndex;
+}
+
+// Test the function
+const blocks = [
+  {
+    gym: false,
+    school: true,
+    store: false,
+  },
+  {
+    gym: true,
+    school: false,
+    store: false,
+  },
+  {
+    gym: true,
+    school: true,
+    store: false,
+  },
+  {
+    gym: false,
+    school: true,
+    store: false,
+  },
+  {
+    gym: false,
+    school: true,
+    store: true,
+  },
+];
+const reqs = ["gym", "school", "store"];
+
+console.log(apartmentHunting(blocks, reqs));  // Expected output: 3
+
+
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;

@@ -1,0 +1,47 @@
+1.Initialize a variable bestIndex to 0 and a variable bestDistance to the maximum possible distance (i.e. the length of blocks). These variables will be used to track
+  the index of the block that is most optimal for the given requirements and the farthest distance that would have to be walked from that block to  reach  any  of  the
+  required buildings, respectively.
+
+2.Then we need to Iterate through the blocks in blocks. For each block, do the following:
+
+3.Initialize a variable distance to 0. This variable will be used to track the farthest distance that would have to be walked from the current block to  reach  any of 
+  the required buildings.
+4.Iterate through the blocks in blocks again. For each block, do the following: 1. If the current block contains any of the required buildings (as determined  by  the 
+  reqs array), update distance to the maximum of its current value and the
+  absolute difference between the indices of the current block and the block being considered.
+  If distance is less than bestDistance, update bestIndex to the current index and bestDistance to the current distance.
+6.Return bestIndex.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function apartmentHunting(blocks, reqs) {
+  let bestIndex = 0;                                     // Initialize a variable to track the index of the most optimal block
+  let bestDistance = blocks.length;                      // Initialize a variable to track the farthest distance that would have to be walked from the most optimal block to reach any of the required buildings
+  for (let i = 0; i < blocks.length; i++) {              // Iterate through the blocks in the `blocks` array
+    const block = blocks[i];                             // Get the current block
+    let distance = 0;                                    // Initialize a variable to track the farthest distance that would have to be walked from the current block to reach any of the required buildings
+    for (let j = 0; j < blocks.length; j++) {            // Iterate through the blocks in the `blocks` array again
+      const otherBlock = blocks[j];                      // Get the current block
+      if (reqs.some(req => otherBlock[req])) {           // If the current block contains any of the required buildings
+        distance = Math.max(distance, Math.abs(i - j));  // Update the `distance` variable to the maximum of its current value and the absolute difference between the indices of the current block and the block being considered
+      }
+    }
+    if (distance < bestDistance) {                       // If the farthest distance that would have to be walked from the current block to reach any of the required buildings is less than the farthest distance that would have to be walked from the most optimal block to reach any of the required buildings
+      bestIndex = i;                                     // Update the "bestIndex" variable to the current index
+      bestDistance = distance;                           // Update the "bestDistance" variable to the current distance
+    }
+  }
+  return bestIndex;                                      // Return the index of the most optimal block
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+The algorithm used to solve this problem is a simple brute-force algorithm.
+
+It iterates through all of the blocks in the blocks array and, for each block, calculates the farthest distance that would have to be walked from that block to reach 
+any of the required buildings. It then keeps track of the block with the shortest such distance and returns its index.
+
+This approach has a time complexity of O(n^2), where n is the number of blocks in the blocks array, since it involves nested loops that iterate through  all  of  the 
+blocks in the array. This is not the most efficient algorithm for solving this problem, but it is relatively simple and straightforward to implement.
