@@ -15,18 +15,18 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function apartmentHunting(blocks, reqs) {
-  let bestIndex = 0;                                     // Initialize a variable to track the index of the most optimal block
-  let bestDistance = blocks.length;                      // Initialize a variable to track the farthest distance that would have to be walked from the most optimal block to reach any of the required buildings
+  let bestIndex = 0;                                     // Initialize a variable to track the index of the most nearest block
+  let bestDistance = blocks.length;                      // Initialize a variable to track the farthest distance that would have to be walked from the most nearest                                                                 block to reach any of the required buildings
   for (let i = 0; i < blocks.length; i++) {              // Iterate through the blocks in the `blocks` array
     const block = blocks[i];                             // Get the current block
-    let distance = 0;                                    // Initialize a variable to track the farthest distance that would have to be walked from the current block to reach any of the required buildings
+    let distance = 0;                                    // Initialize a variable to track the farthest distance that would have to be walked from the current block to                                                             reach any of the required buildings
     for (let j = 0; j < blocks.length; j++) {            // Iterate through the blocks in the `blocks` array again
       const otherBlock = blocks[j];                      // Get the current block
       if (reqs.some(req => otherBlock[req])) {           // If the current block contains any of the required buildings
-        distance = Math.max(distance, Math.abs(i - j));  // Update the `distance` variable to the maximum of its current value and the absolute difference between the indices of the current block and the block being considered
+        distance = Math.max(distance, Math.abs(i - j));  // Update the `distance` variable to the maximum of its current value and the absolute difference between the                                                             indices of the current block and the block being considered
       }
     }
-    if (distance < bestDistance) {                       // If the farthest distance that would have to be walked from the current block to reach any of the required buildings is less than the farthest distance that would have to be walked from the most optimal block to reach any of the required buildings
+    if (distance < bestDistance) {                       // If the farthest distance that would have to be walked from the current block to reach any of the required                                                               buildings is less than the farthest distance that would have to be walked from the most optimal block to                                                               reach any of the required buildings
       bestIndex = i;                                     // Update the "bestIndex" variable to the current index
       bestDistance = distance;                           // Update the "bestDistance" variable to the current distance
     }
